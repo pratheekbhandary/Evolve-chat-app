@@ -31,4 +31,18 @@ export default class users{
         }
         return timestamp;
    }
+
+   sortMessages(userId){
+       debugger;
+    const messagesArray=Object.keys(this.dataBase[userId].messages)
+    .map(messageId=>{
+        return {'timeStamp':this.decode(messageId),
+                ...this.dataBase[userId].messages[messageId]}
+        });
+
+        messagesArray.sort((msg1,msg2)=>{
+            return parseInt(msg1.timeStamp)-parseInt(msg2.timeStamp)
+        });
+        return messagesArray;
+    }
 }
